@@ -11,6 +11,11 @@ module OS
     host_os.include?("linux") || host_os == "cygwin"
   end
 
+  def self.cygwin?
+    return false if ENV["HOMEBREW_TEST_GENERIC_OS"]
+    RbConfig::CONFIG["host_os"] == "cygwin"
+  end
+
   ::OS_VERSION = ENV["HOMEBREW_OS_VERSION"]
 
   if OS.mac?
